@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول</title>
+    <title>تسجيل الدخول - Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,124 +12,366 @@
             box-sizing: border-box;
         }
 
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --gold: #e94560;
+            --light-gold: #ff6b9d;
+            --text: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, rgba(233, 69, 96, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 50%, rgba(15, 52, 96, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
         }
 
         .container {
             display: flex;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             height: auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
             overflow: hidden;
-            min-height: 600px;
+            min-height: 650px;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(233, 69, 96, 0.2);
         }
 
         .left-section {
             flex: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.5) 0%, rgba(22, 33, 62, 0.3) 100%);
             color: white;
-            padding: 60px 40px;
+            padding: 80px 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .left-section h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            font-weight: 700;
+        .left-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(233, 69, 96, 0.1) 0%, transparent 100%);
+            pointer-events: none;
         }
 
-        .left-section p {
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            opacity: 0.9;
+        .left-section::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.3;
+            }
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 3;
         }
 
         .left-section .icon {
-            font-size: 4em;
+            font-size: 5.5em;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(233, 69, 96, 0.3));
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .left-section h1 {
+            font-size: 2.8em;
             margin-bottom: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b9d, #e94560);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+        }
+
+        .left-section p {
+            font-size: 1.15em;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            color: var(--text);
+            font-weight: 300;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(233, 69, 96, 0.1);
+            border-radius: 10px;
+            border-left: 3px solid var(--gold);
+            transition: all 0.3s ease;
+            animation: slideIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        .feature-item:nth-child(2) { animation-delay: 0.2s; }
+        .feature-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .feature-item:hover {
+            background: rgba(233, 69, 96, 0.2);
+            transform: translateX(5px);
+        }
+
+        .feature-item i {
+            color: var(--light-gold);
+            font-size: 1.3em;
+            min-width: 25px;
+        }
+
+        .feature-item span {
+            font-size: 0.95em;
+            color: var(--text);
         }
 
         .right-section {
             flex: 1;
-            padding: 60px 40px;
+            padding: 80px 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            z-index: 3;
         }
 
         .right-section h2 {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 10px;
-            text-align: right;
+            font-size: 2.5em;
+            color: var(--text);
+            margin-bottom: 12px;
+            font-weight: 700;
+            animation: fadeInDown 0.8s ease-out;
         }
 
-        .right-section p {
-            color: #666;
-            margin-bottom: 30px;
-            text-align: right;
-            font-size: 0.95em;
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .right-section > p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 1em;
+            animation: fadeInDown 0.8s ease-out 0.1s both;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.2s; }
+        .form-group:nth-child(2) { animation-delay: 0.3s; }
+        .form-group:nth-child(3) { animation-delay: 0.4s; }
+        .form-group:nth-child(4) { animation-delay: 0.5s; }
+        .form-group:nth-child(5) { animation-delay: 0.6s; }
+        .form-group:nth-child(6) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #333;
+            margin-bottom: 10px;
+            color: var(--text);
             font-weight: 600;
-            text-align: right;
             font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 14px 16px;
+            border: 2px solid rgba(233, 69, 96, 0.3);
+            border-radius: 10px;
             font-size: 1em;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(26, 26, 46, 0.5);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
             text-align: right;
             direction: rtl;
         }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        .form-group input::placeholder {
+            color: var(--text-muted);
         }
 
-        .form-group input::placeholder {
-            color: #999;
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(26, 26, 46, 0.8);
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.3),
+                        inset 0 0 20px rgba(233, 69, 96, 0.05);
+            transform: translateY(-2px);
         }
 
         .checkbox-group {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             justify-content: space-between;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .checkbox-group input[type="checkbox"] {
-            margin-left: 8px;
-            width: auto;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(233, 69, 96, 0.5);
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .checkbox-group input[type="checkbox"]:checked {
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            border-color: var(--light-gold);
+            box-shadow: 0 0 15px rgba(233, 69, 96, 0.4);
+        }
+
+        .checkbox-group input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
         }
 
         .checkbox-group label {
@@ -136,103 +379,205 @@
             cursor: pointer;
             font-weight: 500;
             font-size: 0.9em;
-            color: #666;
+            color: var(--text);
         }
 
         .forgot-password {
-            color: #667eea;
+            color: var(--light-gold);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .forgot-password:hover {
-            color: #764ba2;
-            text-decoration: underline;
+        .forgot-password::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--light-gold));
+            transition: width 0.3s ease;
+        }
+
+        .forgot-password:hover::after {
+            width: 100%;
         }
 
         .login-btn {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 14px;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1.05em;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.9s both;
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s ease;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
         }
 
         .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.5);
         }
 
         .login-btn:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
         .signup-section {
             text-align: center;
             margin-top: 20px;
+            animation: fadeInUp 0.8s ease-out 1s both;
         }
 
         .signup-section p {
-            color: #666;
-            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95em;
         }
 
         .signup-section a {
-            color: #667eea;
+            color: var(--light-gold);
             text-decoration: none;
             font-weight: 700;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .signup-section a:hover {
-            color: #764ba2;
-            text-decoration: underline;
+        .signup-section a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--light-gold));
+            transition: width 0.3s ease;
+        }
+
+        .signup-section a:hover::after {
+            width: 100%;
         }
 
         .social-login {
-            margin-top: 25px;
+            margin-top: 35px;
             text-align: center;
+            animation: fadeInUp 0.8s ease-out 1.1s both;
         }
 
         .social-login p {
-            color: #999;
+            color: var(--text-muted);
             margin-bottom: 15px;
             font-size: 0.9em;
-            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .social-buttons {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             justify-content: center;
         }
 
         .social-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #e0e0e0;
-            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            border: 2px solid rgba(233, 69, 96, 0.3);
+            background: rgba(26, 26, 46, 0.5);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2em;
-            transition: all 0.3s ease;
+            font-size: 1.4em;
+            color: var(--text);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .social-btn:hover {
-            border-color: #667eea;
-            color: #667eea;
-            transform: translateY(-3px);
+            border-color: var(--gold);
+            color: var(--light-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(233, 69, 96, 0.3);
+            background: rgba(26, 26, 46, 0.8);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.85em;
+            margin-top: 8px;
+            display: none;
+            text-align: right;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .input-error {
+            border-color: #ff6b6b !important;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.2) !important;
+        }
+
+        .success-message {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: slideInLeft 0.5s ease-out;
+            display: none;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .left-section {
+                padding: 60px 40px;
+            }
+            .right-section {
+                padding: 60px 40px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -242,7 +587,7 @@
             }
 
             .left-section {
-                padding: 40px 30px;
+                padding: 50px 30px;
                 min-height: 300px;
             }
 
@@ -250,72 +595,87 @@
                 font-size: 2em;
             }
 
-            .left-section p {
-                font-size: 1em;
+            .left-section .icon {
+                font-size: 4em;
             }
 
             .right-section {
-                padding: 40px 30px;
+                padding: 50px 30px;
             }
 
             .right-section h2 {
-                font-size: 1.7em;
+                font-size: 1.8em;
             }
-        }
 
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.9em;
-            margin-top: 5px;
-            display: none;
-            text-align: right;
-        }
-
-        .input-error {
-            border-color: #e74c3c !important;
+            .features {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="left-section">
-            <div class="icon">🔐</div>
-            <h1>أهلا بك!</h1>
-            <p>استمتع بتجربة آمنة وسهلة في التسجيل الدخول. نحن هنا لخدمتك بأفضل ما يمكن.</p>
+            <div class="left-content">
+                <div class="icon">🔐</div>
+                <h1>أهلا بك!</h1>
+                <p>انضم إلى مجتمعنا وستحصل على تجربة فريدة وآمنة</p>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>أمان عالي الجودة</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-lightning-bolt"></i>
+                        <span>سرعة فائقة</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <span>تجربة احترافية</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="right-section">
-            <h2>تسجيل الدخول</h2>
-            <p>أدخل بيانات حسابك للمتابعة</p>
+            <h2>دخول آمن</h2>
+            <p>استمتع بخدماتنا المتميزة</p>
 
             <form id="loginForm">
                 <div class="form-group">
                     <label for="email">البريد الإلكتروني</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="أدخل بريدك الإلكتروني"
-                        required
-                    >
+                    <div class="input-wrapper">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="example@email.com"
+                            required
+                        >
+                    </div>
                     <div class="error-message" id="emailError">البريد الإلكتروني غير صحيح</div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">كلمة المرور</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        placeholder="أدخل كلمة المرور"
-                        required
-                    >
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="••••••••"
+                            required
+                        >
+                    </div>
                     <div class="error-message" id="passwordError">كلمة المرور مطلوبة</div>
                 </div>
 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">تذكرني</label>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">تذكرني</label>
+                    </div>
                     <a href="#" class="forgot-password">هل نسيت كلمة المرور؟</a>
                 </div>
 
@@ -328,52 +688,32 @@
                 <div class="social-login">
                     <p>أو تسجيل الدخول عبر</p>
                     <div class="social-buttons">
-                        <button type="button" class="social-btn" title="Google">G</button>
-                        <button type="button" class="social-btn" title="Facebook">f</button>
-                        <button type="button" class="social-btn" title="Twitter">𝕏</button>
+                        <button type="button" class="social-btn" title="Google">
+                            <i class="fab fa-google"></i>
+                        </button>
+                        <button type="button" class="social-btn" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button type="button" class="social-btn" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i> تم تسجيل الدخول بنجاح!
+    </div>
+
     <script>
         const form = document.getElementById('loginForm');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
+        const successMessage = document.getElementById('successMessage');
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // إعادة تعيين الأخطاء
-            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('input').forEach(el => el.classList.remove('input-error'));
-
-            let isValid = true;
-
-            // التحقق من البريد الإلكتروني
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailInput.value)) {
-                document.getElementById('emailError').style.display = 'block';
-                emailInput.classList.add('input-error');
-                isValid = false;
-            }
-
-            // التحقق من كلمة المرور
-            if (passwordInput.value.length < 6) {
-                document.getElementById('passwordError').textContent = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
-                document.getElementById('passwordError').style.display = 'block';
-                passwordInput.classList.add('input-error');
-                isValid = false;
-            }
-
-            if (isValid) {
-                alert('تم تسجيل الدخول بنجاح!\nالبريد: ' + emailInput.value);
-                // هنا يمكن إرسال البيانات إلى الخادم
-            }
-        });
-
-        // تنظيف الأخطاء عند البدء بالكتابة
+        // Add input event listeners for real-time validation
         emailInput.addEventListener('input', function() {
             if (this.classList.contains('input-error')) {
                 this.classList.remove('input-error');
@@ -386,6 +726,50 @@
                 this.classList.remove('input-error');
                 document.getElementById('passwordError').style.display = 'none';
             }
+        });
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input[type="email"], input[type="password"]').forEach(el => el.classList.remove('input-error'));
+
+            let isValid = true;
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                emailInput.classList.add('input-error');
+                isValid = false;
+            }
+
+            // Password validation
+            if (passwordInput.value.length < 6) {
+                document.getElementById('passwordError').textContent = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                document.getElementById('passwordError').style.display = 'block';
+                passwordInput.classList.add('input-error');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Show success message
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                setTimeout(() => {
+                    form.reset();
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
         });
     </script>
 </body>
